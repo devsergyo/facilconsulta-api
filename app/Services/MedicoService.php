@@ -34,5 +34,15 @@ class MedicoService
         }
     }
 
+    public function getMedicosByName($nome = null)
+    {
+        try {
+            return $this->repository->findByName($nome);
+        } catch (Exception $e) {
+            // Log the error or handle it as needed
+            return ['error' => 'Failed to retrieve medicos by name', 'message' => $e->getMessage()];
+        }
+    }
+
     // Add more methods for update and delete with similar error handling
 }

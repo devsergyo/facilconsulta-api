@@ -40,4 +40,13 @@ class MedicoRepository implements MedicoRepositoryInterface
         }
         return false;
     }
+
+    public function findByName($nome = null)
+    {
+        return Medico::when($nome, function ($query, $nome) {
+                return $query->where('nome', 'like', "%{$nome}%");
+            })
+            ->orderBy('nome', 'asc')
+            ->get();
+    }
 }
