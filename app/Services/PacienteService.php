@@ -34,5 +34,16 @@ class PacienteService
         }
     }
 
-    // Add more methods for update and delete with similar error handling
+    public function findByName(?string $nome)
+    {
+        try {
+            if ($nome) {
+                return $this->repository->findByName($nome);
+            }
+            return $this->repository->all();
+        } catch (Exception $e) {
+            // Log the error or handle it as needed
+            return ['error' => 'Failed to find pacientes', 'message' => $e->getMessage()];
+        }
+    }
 }

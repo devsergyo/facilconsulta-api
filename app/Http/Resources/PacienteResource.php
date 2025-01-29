@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\ConsultaResource;
+use App\Http\Resources\MedicoResource;
 
 class PacienteResource extends JsonResource
 {
@@ -19,9 +21,8 @@ class PacienteResource extends JsonResource
             'nome' => $this->nome,
             'cpf' => $this->cpf,
             'celular' => $this->celular,
-            // Adicione relacionamentos relevantes aqui
-            'consultas' => ConsultaResource::collection($this->consultas),
-            'medicos' => MedicoResource::collection($this->medicos),
+            'consultas' => $this->consultas ? ConsultaResource::collection($this->consultas) : [],
+            'medicos' => $this->medicos ? MedicoResource::collection($this->medicos) : [],
         ];
     }
 }

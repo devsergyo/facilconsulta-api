@@ -30,4 +30,16 @@ class Medico extends Model
     {
         return $this->belongsTo(Cidade::class);
     }
+
+    public function consultas()
+    {
+        return $this->hasMany(Consulta::class);
+    }
+
+    public function pacientes()
+    {
+        return $this->belongsToMany(Paciente::class, 'consultas')
+            ->withPivot('data')
+            ->withTimestamps();
+    }
 }

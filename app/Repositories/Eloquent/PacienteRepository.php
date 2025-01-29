@@ -7,24 +7,31 @@ use App\Repositories\Interfaces\PacienteRepositoryInterface;
 
 class PacienteRepository implements PacienteRepositoryInterface
 {
+    protected $model;
+
+    public function __construct(Paciente $model)
+    {
+        $this->model = $model;
+    }
+
     public function all()
     {
-        return Paciente::all();
+        return $this->model->with(['consultas', 'medicos'])->get();
     }
 
     public function find($id)
     {
-        return Paciente::find($id);
+        return $this->model->with(['consultas', 'medicos'])->find($id);
     }
 
     public function create(array $data)
     {
-        return Paciente::create($data);
+        return $this->model->create($data);
     }
 
     public function update($id, array $data)
     {
-        $paciente = Paciente::find($id);
+        $paciente = $this->model->find($id);
         if ($paciente) {
             $paciente->update($data);
             return $paciente;
@@ -34,10 +41,17 @@ class PacienteRepository implements PacienteRepositoryInterface
 
     public function delete($id)
     {
-        $paciente = Paciente::find($id);
+        $paciente = $this->model->find($id);
         if ($paciente) {
             return $paciente->delete();
         }
         return false;
+    }
+
+    public function findByName(string $nome)
+    {
+        return $this->model->with(['consultas', 'medicos'])
+            ->where('nome', 'like', "%{$nome}%")
+            ->get();
     }
 }

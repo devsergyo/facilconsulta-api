@@ -3,6 +3,9 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Cidades\IndexController as CidadesIndexController;
 use App\Http\Controllers\Medicos\IndexController as MedicosIndexController;
+use App\Http\Controllers\Medicos\StoreController as MedicosStoreController;
+use App\Http\Controllers\Medicos\PacienteController as MedicosPacienteController;
+use App\Http\Controllers\Pacientes\IndexController as PacientesIndexController;
 use Illuminate\Support\Facades\Route;
 
 // Rotas públicas
@@ -12,12 +15,15 @@ Route::post('/login', [AuthController::class, 'login']);
 // Rotas públicas de listagem
 Route::get('/cidades', [CidadesIndexController::class, '__invoke']);
 Route::get('/medicos', [MedicosIndexController::class, '__invoke']);
+Route::get('/pacientes', [PacientesIndexController::class, '__invoke']);
 
 // Rotas protegidas
 Route::middleware('auth:sanctum')->group(function () {
+    // Autenticação
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
-    
-    // Outras rotas protegidas
-    
+
+    // Médicos
+    Route::post('/medicos', [MedicosStoreController::class, '__invoke']);
+    Route::get('/medicos/{id_medico}/pacientes', [MedicosPacienteController::class, '__invoke']);
 });
