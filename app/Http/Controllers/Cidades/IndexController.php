@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cidades;
 
 use App\Services\CidadeService;
 use App\Http\Resources\CidadeCollection;
+use Illuminate\Http\Request;
 
 class IndexController
 {
@@ -14,9 +15,9 @@ class IndexController
         $this->cidadeService = $cidadeService;
     }
 
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-        $cidades = $this->cidadeService->getAllCidades();
+        $cidades = $this->cidadeService->getAllCidades($request);
         return new CidadeCollection($cidades);
     }
 }

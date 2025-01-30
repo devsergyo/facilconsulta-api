@@ -40,4 +40,9 @@ class CidadeRepository implements CidadeRepositoryInterface
         }
         return false;
     }
+
+    public function findByName($nome = null)
+    {
+        return Cidade::where('nome', 'like', '%' . $nome . '%')->get();
+    }
 }
