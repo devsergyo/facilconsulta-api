@@ -9,7 +9,7 @@ class MedicoRepository implements MedicoRepositoryInterface
 {
     public function all()
     {
-        return Medico::all();
+        return Medico::orderBy('nome', 'asc')->get();
     }
 
     public function find($id)
