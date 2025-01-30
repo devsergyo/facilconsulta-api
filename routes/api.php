@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Cidades\IndexController as CidadesIndexController;
-use App\Http\Controllers\Cidades\MedicoController as CidadesMedicoController;
+use App\Http\Controllers\Cidades\CidadesMedicoController;
 use App\Http\Controllers\Medicos\IndexController as MedicosIndexController;
 use App\Http\Controllers\Medicos\StoreController as MedicosStoreController;
 use App\Http\Controllers\Medicos\ConsultaController as MedicosConsultaController;

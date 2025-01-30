@@ -41,6 +41,12 @@ class CidadeService
         }
     }
 
+    public function getMedicosPorCidade(Request $request)
+    {
+        $cidadeId = $request->route('id_cidade');
+        return $this->repository->getMedicosPorCidade($cidadeId);
+    }
+
 
     // Add more methods for update and delete with similar error handling
 }

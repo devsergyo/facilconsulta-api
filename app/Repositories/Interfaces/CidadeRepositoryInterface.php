@@ -10,4 +10,5 @@ interface CidadeRepositoryInterface
     public function update($id, array $data);
     public function delete($id);
     public function findByName($nome = null);
+    public function getMedicosPorCidade(int $idCidade = null);
 }

@@ -47,4 +47,12 @@ class CidadeRepository implements CidadeRepositoryInterface
             ->orderBy('nome', 'asc')
             ->get();
     }
+
+    public function getMedicosPorCidade(int $idCidade = null)
+    {
+
+        return Cidade::with('medicos')
+            ->where('id_cidade', $idCidade)
+            ->get();
+    }
 }
