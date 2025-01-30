@@ -6,7 +6,7 @@ use App\Http\Controllers\Cidades\CidadesMedicoController;
 use App\Http\Controllers\Medicos\IndexController as MedicosIndexController;
 use App\Http\Controllers\Medicos\StoreController as MedicosStoreController;
 use App\Http\Controllers\Medicos\ConsultaController as MedicosConsultaController;
-use App\Http\Controllers\Medicos\PacienteController as MedicosPacienteController;
+use App\Http\Controllers\Medicos\MedicosPacienteController;
 use App\Http\Controllers\Pacientes\IndexController as PacientesIndexController;
 use Illuminate\Support\Facades\Route;
 

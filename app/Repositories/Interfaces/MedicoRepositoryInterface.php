@@ -10,4 +10,6 @@ interface MedicoRepositoryInterface
     public function update($id, array $data);
     public function delete($id);
     public function findByName($nome = null);
+
+    public function getPacientesByMedico(int $idMedico, string $nomePaciente = null, bool $agendados = true);
 }

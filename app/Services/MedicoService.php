@@ -52,4 +52,9 @@ class MedicoService
     }
 
     // Add more methods for update and delete with similar error handling
+    public function getPacientesByMedico(Request $request)
+    {
+        $idMedico = $request->route('id_medico');
+        return $this->repository->getPacientesByMedico($idMedico);
+    }
 }

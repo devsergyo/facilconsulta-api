@@ -49,4 +49,29 @@ class MedicoRepository implements MedicoRepositoryInterface
             ->orderBy('nome', 'asc')
             ->get();
     }
+
+    public function getPacientesByMedico(int $idMedico, string $nomePaciente = null, bool $agendados = true)
+    {
+        $medico = Medico::findOrFail($idMedico);
+
+        $query = $medico->pacientes()
+            ->with(['consultas' => function ($query) {
+                $query->orderBy('data', 'asc');
+            }]);
+
+        // Filtrar por nome se fornecido
+        if (!empty($nomePaciente)) {
+            $query->where('nome', 'like', '%' . $nomePaciente . '%');
+        }
+
+        // Filtrar apenas pacientes com consultas agendadas
+        if (!empty($agendados)) {
+            $query->whereHas('consultas', function ($query) {
+                $query->where('data', '>=', now());
+                $query->orderBy('data', 'asc');
+            });
+        }
+
+        return $query->orderBy('nome', 'ASC')->get();
+    }
 }
