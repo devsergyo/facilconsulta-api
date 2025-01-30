@@ -30,6 +30,8 @@ class StoreConsultaRequest extends FormRequest
                 'regex:/^\d{2}\/\d{2}\/\d{4}$/',
                 'after_or_equal:today'
             ],
+            'hora' => ['required', 'regex:/^\d{2}:\d{2}$/'],
+            'descricao' => ['required', 'max:255'],
         ];
     }
 
@@ -43,6 +45,10 @@ class StoreConsultaRequest extends FormRequest
             'data.required' => 'A data é obrigatória',
             'data.regex' => 'A data deve estar no formato dd/mm/aaaa',
             'data.after_or_equal' => 'A data deve ser hoje ou uma data futura',
+            'hora.required' => 'A hora é obrigatória',
+            'hora.regex' => 'A hora deve estar no formato hh:mm',
+            'descricao.required' => 'A descrição é obrigatória',
+            'descricao.max' => 'A descrição deve ter no máximo 255 caracteres',
         ];
     }
 }
