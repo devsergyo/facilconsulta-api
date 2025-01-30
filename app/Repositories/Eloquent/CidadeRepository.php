@@ -9,7 +9,7 @@ class CidadeRepository implements CidadeRepositoryInterface
 {
     public function all()
     {
-        return Cidade::all();
+        return Cidade::orderBy('nome', 'asc')->get();
     }
 
     public function find($id)
@@ -43,6 +43,8 @@ class CidadeRepository implements CidadeRepositoryInterface
 
     public function findByName($nome = null)
     {
-        return Cidade::where('nome', 'like', '%' . $nome . '%')->get();
+        return Cidade::where('nome', 'like', '%' . $nome . '%')
+            ->orderBy('nome', 'asc')
+            ->get();
     }
 }
