@@ -34,6 +34,20 @@ class PacienteService
         }
     }
 
+    public function updatePaciente($id, array $data)
+    {
+        try {
+            $paciente = $this->repository->update($id, $data);
+            if (!$paciente) {
+                return ['error' => 'Paciente não encontrado'];
+            }
+            return $paciente;
+        } catch (Exception $e) {
+            // Log the error or handle it as needed
+            return ['error' => 'Failed to update paciente', 'message' => $e->getMessage()];
+        }
+    }
+
     public function findByName(?string $nome)
     {
         try {

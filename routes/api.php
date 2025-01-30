@@ -8,6 +8,8 @@ use App\Http\Controllers\Medicos\StoreController as MedicosStoreController;
 use App\Http\Controllers\Medicos\ConsultaController as MedicosConsultaController;
 use App\Http\Controllers\Medicos\MedicosPacienteController;
 use App\Http\Controllers\Pacientes\IndexController as PacientesIndexController;
+use App\Http\Controllers\Pacientes\StoreController as PacientesStoreController;
+use App\Http\Controllers\Pacientes\UpdateController as PacientesUpdateController;
 use Illuminate\Support\Facades\Route;
 
 // Rotas públicas
@@ -32,4 +34,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/medicos', [MedicosStoreController::class, '__invoke']);
     Route::get('/medicos/{id_medico}/pacientes', [MedicosPacienteController::class, '__invoke']);
     Route::post('/medicos/consulta', [MedicosConsultaController::class, '__invoke']);
+
+    // Pacientes
+    Route::post('/pacientes', [PacientesStoreController::class, '__invoke']);
+    Route::put('/pacientes/{id_paciente}', [PacientesUpdateController::class, '__invoke']);
 });
