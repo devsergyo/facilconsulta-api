@@ -19,7 +19,7 @@ Route::post('/login', [AuthController::class, 'login']);
 // Rotas públicas de listagem
 Route::get('/cidades', [CidadesIndexController::class, '__invoke']);
 Route::get('/medicos', [MedicosIndexController::class, '__invoke']);
-Route::get('/pacientes', [PacientesIndexController::class, '__invoke']);
+
 
 // Rotas protegidas
 Route::middleware('auth:sanctum')->group(function () {
@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/medicos/consulta', [MedicosConsultaController::class, '__invoke']);
 
     // Pacientes
+    Route::get('/pacientes', [PacientesIndexController::class, '__invoke']);
     Route::post('/pacientes', [PacientesStoreController::class, '__invoke']);
     Route::put('/pacientes/{id_paciente}', [PacientesUpdateController::class, '__invoke']);
 });
