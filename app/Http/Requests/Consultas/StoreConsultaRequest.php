@@ -16,7 +16,7 @@ class StoreConsultaRequest extends FormRequest
     {
         // Garante que a data de hoje esteja no formato correto para comparação
         $this->merge([
-            'today' => Carbon::now()->format('d/m/Y')
+            'today' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
     }
 
@@ -27,11 +27,9 @@ class StoreConsultaRequest extends FormRequest
             'paciente_id' => ['required', 'exists:pacientes,id'],
             'data' => [
                 'required',
-                'regex:/^\d{2}\/\d{2}\/\d{4}$/',
+                'date_format:Y-m-d H:i:s',
                 'after_or_equal:today'
-            ],
-            'hora' => ['required', 'regex:/^\d{2}:\d{2}$/'],
-            'descricao' => ['required', 'max:255'],
+            ]
         ];
     }
 
@@ -43,12 +41,8 @@ class StoreConsultaRequest extends FormRequest
             'paciente_id.required' => 'O paciente é obrigatório',
             'paciente_id.exists' => 'Paciente não encontrado',
             'data.required' => 'A data é obrigatória',
-            'data.regex' => 'A data deve estar no formato dd/mm/aaaa',
-            'data.after_or_equal' => 'A data deve ser hoje ou uma data futura',
-            'hora.required' => 'A hora é obrigatória',
-            'hora.regex' => 'A hora deve estar no formato hh:mm',
-            'descricao.required' => 'A descrição é obrigatória',
-            'descricao.max' => 'A descrição deve ter no máximo 255 caracteres',
+            'data.date_format' => 'A data deve estar no formato Y-m-d H:i:s',
+            'data.after_or_equal' => 'A data deve ser hoje ou uma data futura'
         ];
     }
 }

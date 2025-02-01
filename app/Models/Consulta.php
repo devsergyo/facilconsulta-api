@@ -21,8 +21,8 @@ class Consulta extends Model
     protected function data(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => Carbon::parse($value)->format('d/m/Y'),
-            set: fn ($value) => Carbon::parse($value)->format('Y-m-d')
+            get: fn ($value) => Carbon::parse($value)->format('Y-m-d H:i:s'),
+            set: fn ($value) => Carbon::parse($value)->format('Y-m-d H:i:s')
         );
     }
 
