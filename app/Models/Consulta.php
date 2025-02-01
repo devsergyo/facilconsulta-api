@@ -22,7 +22,7 @@ class Consulta extends Model
     {
         return Attribute::make(
             get: fn ($value) => Carbon::parse($value)->format('d/m/Y'),
-            set: fn ($value) => Carbon::parse($this->attributes['data'])->format('Y-m-d')
+            set: fn ($value) => Carbon::parse($value)->format('Y-m-d')
         );
     }
 
